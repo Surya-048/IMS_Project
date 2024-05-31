@@ -7,37 +7,33 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class User {
+public class Seller {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(name = "seller_Name",nullable = false)
     private String name;
 
-    @Column(unique = true,nullable = false)
+    @Column(name = "user_Name", unique = true,nullable = false)
     private String userName;
 
+    @Column(name = "passWord",nullable = false)
     private String password;
-
-
+    @Column(name = "role")
     private Role role;
 
-    @OneToMany(orphanRemoval = true)
-    @JoinColumn(name = "user_id")
-    private  List<UserOrder> userOrder;
+//    @OneToMany(orphanRemoval = true)
+//    @JoinColumn(name = "sold_order")
+//    private  List<SoldOrders> soldOrders;
 
+    @Column(name = "phone_No")
     private String phoneNumber;
-
-    private String createdBy;
-
-
+    @Column(name = "created_At")
     private Date createdAt;
 
-    private String updatedBy;
-
-    private Date updatedAt;
-
+    @Column(name = "is_Active")
     private boolean isActive;
 
     public int getId() {
@@ -81,24 +77,8 @@ public class User {
         this.role = role;
     }
 
-    public List<UserOrder> getOrder() {
-        return userOrder;
-    }
-
-    public void setOrder(List<UserOrder> userOrder) {
-        this.userOrder = userOrder;
-    }
-
-    public User() {
+    public Seller() {
         super();
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
     }
 
     public Date getCreatedAt() {
@@ -107,22 +87,6 @@ public class User {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public String getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
     }
 
     public boolean isActive() {
@@ -149,12 +113,8 @@ public class User {
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
-                ", order=" + userOrder +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", createdBy='" + createdBy + '\'' +
                 ", createdAt=" + createdAt +
-                ", updatedBy='" + updatedBy + '\'' +
-                ", updatedAt=" + updatedAt +
                 ", isActive=" + isActive +
                 '}';
     }

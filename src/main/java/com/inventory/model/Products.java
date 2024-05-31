@@ -3,47 +3,55 @@ package com.inventory.model;
 import com.inventory.enums.ProductType;
 import jakarta.persistence.*;
 
-import javax.management.relation.Role;
 import java.util.Date;
-import java.util.List;
 
 @Entity
-public class ProductInventory {
+@Table(name = "products_details")
+public class Products {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int productId;
+    @Column(name = "product_Id")
+    private long Id;
 
+    @Column(name = "product_Name",nullable = false)
     private String productName;
 
+    @Column(name = "cost_Price",nullable = false)
     private double costPrice;
 
+    @Column(name = "sell_Price",nullable = false)
     private double sellPrice;
-
+    @Column(name = "min_Quantity",nullable = false)
     private int minQuantity;
 
+    @Column(name = "quantity",nullable = false)
     private int quantity;
 
+    @Column(name = "product_Type")
     private ProductType productType;
 
+    @Column(name = "is_Active")
     private boolean isActive;
 
+    @Column(name = "created_At",nullable = false)
     private Date createdAt;
 
-    private String createdBy;
+    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @JoinColumn(name = "created_By",nullable = false)
+    private Seller createdBy;
 
+    @Column(name = "updated_At")
     private Date updatedAt;
 
-    private String updatedBy;
-
-    public ProductInventory() {
+    public Products() {
     }
 
-    public ProductInventory(int productId, String productName, double costPrice, double sellPrice, int minQuantity,
-                            int quantity, ProductType productType, boolean isActive, Date createdAt, String createdBy,
-                            Date updatedAt, String updatedBy) {
-
-        this.productId = productId;
+    public Products(int productId, String productName,
+                    double costPrice, double sellPrice,
+                    int minQuantity, int quantity, ProductType productType,
+                    boolean isActive, Date createdAt, Seller createdBy, Date updatedAt) {
+        this.Id = productId;
         this.productName = productName;
         this.costPrice = costPrice;
         this.sellPrice = sellPrice;
@@ -54,15 +62,14 @@ public class ProductInventory {
         this.createdAt = createdAt;
         this.createdBy = createdBy;
         this.updatedAt = updatedAt;
-        this.updatedBy = updatedBy;
     }
 
-    public int getProductId() {
-        return productId;
+    public long getProductId() {
+        return Id;
     }
 
     public void setProductId(int productId) {
-        this.productId = productId;
+        this.Id = productId;
     }
 
     public String getProductName() {
@@ -129,11 +136,11 @@ public class ProductInventory {
         this.createdAt = createdAt;
     }
 
-    public String getCreatedBy() {
+    public Seller getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(String createdBy) {
+    public void setCreatedBy(Seller createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -145,18 +152,11 @@ public class ProductInventory {
         this.updatedAt = updatedAt;
     }
 
-    public String getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
-    }
 
     @Override
     public String toString() {
         return "ProductInventory{" +
-                "productId=" + productId +
+                "productId=" + Id +
                 ", productName='" + productName + '\'' +
                 ", costPrice=" + costPrice +
                 ", sellPrice=" + sellPrice +
@@ -167,7 +167,6 @@ public class ProductInventory {
                 ", createdAt=" + createdAt +
                 ", createdBy='" + createdBy + '\'' +
                 ", updatedAt=" + updatedAt +
-                ", updatedBy='" + updatedBy + '\'' +
                 '}';
     }
 }
