@@ -1,11 +1,8 @@
 package com.inventory.dto;
 
 public class ProductsDto {
-    private Integer productId;
 
     private String productName;
-
-    private String productCode;
 
     private String productType;
 
@@ -18,22 +15,6 @@ public class ProductsDto {
     private Double sellingPrice;
 
     private Boolean isActive;
-
-    public String getProductCode() {
-        return productCode;
-    }
-
-    public void setProductCode() {
-        this.productCode = "PID" + this.productId;
-    }
-
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
 
     public String getProductName() {
         return productName;
@@ -91,27 +72,16 @@ public class ProductsDto {
         isActive = active;
     }
 
-    public Integer getAdminId() {
-        return adminId;
-    }
-
-    public void setAdminId(Integer adminId) {
-        this.adminId = adminId;
-    }
-
     @Override
     public String toString() {
         return "ProductsDto{" +
-                "productId=" + productId +
                 ", productName='" + productName + '\'' +
-                ", productCode='" + productCode + '\'' +
                 ", productType='" + productType + '\'' +
                 ", quantity=" + quantity +
                 ", minimumQuantity=" + minimumQuantity +
                 ", costPrice=" + costPrice +
                 ", sellingPrice=" + sellingPrice +
                 ", isActive=" + isActive +
-                ", adminId=" + adminId +
                 '}';
     }
 }
