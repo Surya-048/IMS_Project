@@ -12,7 +12,7 @@ public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_Id")
-    private long Id;
+    private long productId;
 
     @Column(name = "product_Name",nullable = false)
     private String productName;
@@ -21,9 +21,9 @@ public class Products {
     private double costPrice;
 
     @Column(name = "sell_Price",nullable = false)
-    private double sellPrice;
+    private double sellingPrice;
     @Column(name = "min_Quantity",nullable = false)
-    private int minQuantity;
+    private int minimumQuantity;
 
     @Column(name = "quantity",nullable = false)
     private int quantity;
@@ -47,15 +47,15 @@ public class Products {
     public Products() {
     }
 
-    public Products(int productId, String productName,
-                    double costPrice, double sellPrice,
-                    int minQuantity, int quantity, ProductType productType,
+    public Products(long productId, String productName,
+                    double costPrice, double sellingPrice,
+                    int minimumQuantity, int quantity, ProductType productType,
                     boolean isActive, Date createdAt, Seller createdBy, Date updatedAt) {
-        this.Id = productId;
+        this.productId = productId;
         this.productName = productName;
         this.costPrice = costPrice;
-        this.sellPrice = sellPrice;
-        this.minQuantity = minQuantity;
+        this.sellingPrice = sellingPrice;
+        this.minimumQuantity = minimumQuantity;
         this.quantity = quantity;
         this.productType = productType;
         this.isActive = isActive;
@@ -65,11 +65,11 @@ public class Products {
     }
 
     public long getProductId() {
-        return Id;
+        return productId;
     }
 
-    public void setProductId(int productId) {
-        this.Id = productId;
+    public void setProductId(long productId) {
+        this.productId = productId;
     }
 
     public String getProductName() {
@@ -88,20 +88,20 @@ public class Products {
         this.costPrice = costPrice;
     }
 
-    public double getSellPrice() {
-        return sellPrice;
+    public double getSellingPrice() {
+        return sellingPrice;
     }
 
-    public void setSellPrice(double sellPrice) {
-        this.sellPrice = sellPrice;
+    public void setSellingPrice(double sellingPrice) {
+        this.sellingPrice = sellingPrice;
     }
 
-    public int getMinQuantity() {
-        return minQuantity;
+    public int getMinimumQuantity() {
+        return minimumQuantity;
     }
 
-    public void setMinQuantity(int minQuantity) {
-        this.minQuantity = minQuantity;
+    public void setMinimumQuantity(int minimumQuantity) {
+        this.minimumQuantity = minimumQuantity;
     }
 
     public int getQuantity() {
@@ -152,20 +152,19 @@ public class Products {
         this.updatedAt = updatedAt;
     }
 
-
     @Override
-    public String toString() {
-        return "ProductInventory{" +
-                "productId=" + Id +
+    public String  toString() {
+        return "Products{" +
+                "productId=" + productId +
                 ", productName='" + productName + '\'' +
                 ", costPrice=" + costPrice +
-                ", sellPrice=" + sellPrice +
-                ", minQuantity=" + minQuantity +
+                ", sellingPrice=" + sellingPrice +
+                ", minimumQuantity=" + minimumQuantity +
                 ", quantity=" + quantity +
                 ", productType=" + productType +
                 ", isActive=" + isActive +
                 ", createdAt=" + createdAt +
-                ", createdBy='" + createdBy + '\'' +
+                ", createdBy=" + createdBy +
                 ", updatedAt=" + updatedAt +
                 '}';
     }
