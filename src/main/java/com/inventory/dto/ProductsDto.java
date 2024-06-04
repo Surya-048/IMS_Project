@@ -1,6 +1,11 @@
 package com.inventory.dto;
 
+import com.inventory.model.Seller;
+
+import java.util.Date;
+
 public class ProductsDto {
+    private Long productId;
 
     private String productName;
 
@@ -15,6 +20,54 @@ public class ProductsDto {
     private Double sellingPrice;
 
     private Boolean isActive;
+
+    private String productCode;
+
+    private Date createdAt;
+
+    private Integer adminId;
+
+    private Date updatedAt;
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public Integer getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(Integer createdBy) {
+        this.adminId = createdBy;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getProductCode() {
+        return "IPID0"+this.productId;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
+    }
 
     public String getProductName() {
         return productName;
@@ -75,13 +128,14 @@ public class ProductsDto {
     @Override
     public String toString() {
         return "ProductsDto{" +
-                ", productName='" + productName + '\'' +
+                "productName='" + productName + '\'' +
                 ", productType='" + productType + '\'' +
                 ", quantity=" + quantity +
                 ", minimumQuantity=" + minimumQuantity +
                 ", costPrice=" + costPrice +
                 ", sellingPrice=" + sellingPrice +
                 ", isActive=" + isActive +
+                ", productCode='" + productCode + '\'' +
                 '}';
     }
 }

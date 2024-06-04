@@ -11,10 +11,6 @@ public class SoldOrders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
 
-//    @OneToMany
-//    @JoinColumn(name = "product_Details")
-//    private List<SoldProductDetails> productsOrderDetails;
-
     @ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
     @JoinColumn(name = "created_By",nullable = false)
     private Seller createdBy;

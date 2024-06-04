@@ -1,21 +1,31 @@
 package com.inventory.dto;
 
-import jakarta.persistence.Column;
-
 import javax.management.relation.Role;
 import java.util.Date;
 
 public class SellerDto {
+    private long adminId;
     private String userName;
+
     private String email;
 
     private String password;
+
     private Role role;
 
     private String phoneNumber;
+
     private Date createdAt;
 
     private boolean isActive;
+
+    public long getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(long adminId) {
+        this.adminId = adminId;
+    }
 
     public String getUserName() {
         return userName;

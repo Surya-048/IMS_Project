@@ -4,50 +4,40 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LoginResponseDto {
-    private String token;
+    private String jwtToken;
 
     private String name;
 
-    private int adminId;
-//    private long expiresIn;
+    private long adminId;
 
-    public void setToken(String token) {
-        this.token = token;
-    }
-    public void setName(String name){
-        this.name=name;
+    public String getJwtToken() {
+        return jwtToken;
     }
 
-//    public void setExpiresIn(long expiresIn) {
-//        this.expiresIn = expiresIn;
-//    }
-
-
-    public int getAdminId() {
-        return adminId;
-    }
-
-    public void setAdminId(int adminId) {
-        this.adminId = adminId;
-    }
-
-    public String getToken() {
-        return token;
+    public void setJwtToken(String jwtToken) {
+        this.jwtToken = jwtToken;
     }
 
     public String getName() {
         return name;
     }
 
-//    public long getExpiresIn() {
-//        return expiresIn;
-//    }
+    public void setName(String name) {
+        this.name = name;
+    }
 
+    public long getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(long adminId) {
+        this.adminId = adminId;
+    }
 
     @Override
     public String toString() {
         return "LoginResponseDto{" +
-                "token='" + token + '\'' +
+                "jwtToken='" + jwtToken + '\'' +
                 ", name='" + name + '\'' +
                 ", adminId=" + adminId +
                 '}';
