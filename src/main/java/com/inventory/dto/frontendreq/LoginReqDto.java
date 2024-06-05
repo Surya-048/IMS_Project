@@ -1,6 +1,6 @@
-package com.inventory.dto;
+package com.inventory.dto.frontendreq;
 
-public class LoginDto {
+public class LoginReqDto {
     private String email;
     private String password;
 

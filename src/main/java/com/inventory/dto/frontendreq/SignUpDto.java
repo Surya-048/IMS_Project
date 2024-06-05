@@ -1,4 +1,4 @@
-package com.inventory.dto;
+package com.inventory.dto.frontendreq;
 
 public class SignUpDto {
     private String userName;

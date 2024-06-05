@@ -1,7 +1,9 @@
 package com.inventory.controller;
 
 import com.inventory.dto.ProductsDto;
-import com.inventory.service.ApplicationService;
+import com.inventory.dto.OrdersDto;
+import com.inventory.exception.GenericException;
+import com.inventory.service.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,22 +20,59 @@ public class AdminController {
     private ModelMapper modelMapper;
 
     @Autowired
-    private ApplicationService applicationService;
+    private ProductService productService;
 
     // Showing All Product Details..
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/allproducts")
-    public ResponseEntity<List<ProductsDto>> allProducts(){
-        List<ProductsDto> productsDtoList = applicationService.allProducts();
+    public ResponseEntity<List<ProductsDto>> allProducts(@RequestParam(value = "adminId",defaultValue = "0")Long adminId){
+        List<ProductsDto> productsDtoList;
+        if(adminId == 0){
+            throw new GenericException("Admin Id Asuni, Patha ....");
+        }else {
+            productsDtoList = this.productService.allProductsDetails(adminId);
+        }
 
-        return new ResponseEntity(productsDtoList, HttpStatus.OK);
+        if(productsDtoList.isEmpty())
+            throw new GenericException("The Admin with Id "+ adminId + " doesn't Exits");
+//        System.out.println(adminId);
+        return new ResponseEntity<>(productsDtoList, HttpStatus.OK);
     }
 
 
+    //Add products..
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/addproduct")
-    public ResponseEntity addProduct(@RequestBody ProductsDto productsDto){
+    public ResponseEntity<ProductsDto> addProduct(@RequestBody ProductsDto productsDto){
+        ProductsDto productsDto1 = null;
+        if(productsDto.getProductId()==null){
+           productsDto1 = this.productService.addNewProduct(productsDto);
 
+        }else {
+            productsDto1 = this.productService.updateProduct(productsDto);
+        }
+
+        return new ResponseEntity<>(productsDto1, HttpStatus.CREATED);
+    }
+
+    //Order Products..
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("/order")
+    public ResponseEntity orderProduct(@RequestBody OrdersDto ordersDto){
+
+        this.productService.addNewOrder(ordersDto);
+        System.out.println(ordersDto);
+
+        return ResponseEntity.ok().build();
+    }
+
+    //All Orders..
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/allOrders")
+    public ResponseEntity allOrders(@RequestParam(value = "adminId", defaultValue = "0")Long adminId){
+
+//        System.out.println();
+        return ResponseEntity.ok().build();
     }
 
 }

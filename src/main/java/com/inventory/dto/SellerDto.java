@@ -1,21 +1,31 @@
 package com.inventory.dto;
 
-import jakarta.persistence.Column;
-
 import javax.management.relation.Role;
 import java.util.Date;
 
 public class SellerDto {
+    private Long adminId;
     private String userName;
+
     private String email;
 
     private String password;
+
     private Role role;
 
     private String phoneNumber;
+
     private Date createdAt;
 
     private boolean isActive;
+
+    public Long getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(Long adminId) {
+        this.adminId = adminId;
+    }
 
     public String getUserName() {
         return userName;
@@ -76,7 +86,8 @@ public class SellerDto {
     @Override
     public String toString() {
         return "SellerDto{" +
-                "userName='" + userName + '\'' +
+                "adminId=" + adminId +
+                ", userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +

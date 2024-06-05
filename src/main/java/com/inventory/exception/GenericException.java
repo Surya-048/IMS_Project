@@ -1,7 +1,11 @@
 package com.inventory.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+@RestControllerAdvice
 public class GenericException extends RuntimeException{
     public GenericException() {
     }
@@ -22,5 +26,9 @@ public class GenericException extends RuntimeException{
         super(message, cause, enableSuppression, writableStackTrace);
     }
 
+    @ExceptionHandler(GenericException.class)
+    public ResponseEntity<Object> exceptionHandling(GenericException genericException){
+        return  new ResponseEntity<>(genericException.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
 }

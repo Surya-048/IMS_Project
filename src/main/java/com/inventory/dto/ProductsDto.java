@@ -1,6 +1,11 @@
 package com.inventory.dto;
 
+import com.inventory.model.Seller;
+
+import java.util.Date;
+
 public class ProductsDto {
+    private Long productId;
 
     private String productName;
 
@@ -15,6 +20,23 @@ public class ProductsDto {
     private Double sellingPrice;
 
     private Boolean isActive;
+
+    private String productCode;
+
+    private Date createdAt;
+
+    private Long adminId;
+
+
+    private Date updatedAt;
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
 
     public String getProductName() {
         return productName;
@@ -64,17 +86,50 @@ public class ProductsDto {
         this.sellingPrice = sellingPrice;
     }
 
-    public Boolean getActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
-        isActive = active;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public String getProductCode() {
+        return "IPID$"+this.productId;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Long getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(Long adminId) {
+        this.adminId = adminId;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     @Override
     public String toString() {
         return "ProductsDto{" +
+                "productId=" + productId +
                 ", productName='" + productName + '\'' +
                 ", productType='" + productType + '\'' +
                 ", quantity=" + quantity +
@@ -82,6 +137,10 @@ public class ProductsDto {
                 ", costPrice=" + costPrice +
                 ", sellingPrice=" + sellingPrice +
                 ", isActive=" + isActive +
+                ", productCode='" + productCode + '\'' +
+                ", createdAt=" + createdAt +
+                ", adminId=" + adminId +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

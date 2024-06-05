@@ -1,6 +1,5 @@
 package com.inventory.model;
 
-import com.inventory.enums.ProductType;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -12,7 +11,7 @@ public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_Id")
-    private long productId;
+    private Long productId;
 
     @Column(name = "product_Name",nullable = false)
     private String productName;
@@ -29,7 +28,7 @@ public class Products {
     private int quantity;
 
     @Column(name = "product_Type")
-    private ProductType productType;
+    private String productType;
 
     @Column(name = "is_Active")
     private boolean isActive;
@@ -37,20 +36,19 @@ public class Products {
     @Column(name = "created_At",nullable = false)
     private Date createdAt;
 
-    // @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+//    @ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
     @Column(name = "created_By",nullable = false)
-    private Seller createdBy;
+    private Long adminId;
 
     @Column(name = "updated_At")
     private Date updatedAt;
 
-    public Products() {
-    }
+    public Products(){}
 
-    public Products(long productId, String productName,
-                    double costPrice, double sellingPrice,
-                    int minimumQuantity, int quantity, ProductType productType,
-                    boolean isActive, Date createdAt, Seller createdBy, Date updatedAt) {
+    public Products(Long productId, String productName, double costPrice,
+                    double sellingPrice, int minimumQuantity, int quantity,
+                    String productType, boolean isActive, Date createdAt,
+                    Long adminId, Date updatedAt) {
         this.productId = productId;
         this.productName = productName;
         this.costPrice = costPrice;
@@ -60,15 +58,15 @@ public class Products {
         this.productType = productType;
         this.isActive = isActive;
         this.createdAt = createdAt;
-        this.createdBy = createdBy;
+        this.adminId = adminId;
         this.updatedAt = updatedAt;
     }
 
-    public long getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(long productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 
@@ -112,20 +110,20 @@ public class Products {
         this.quantity = quantity;
     }
 
-    public ProductType getProductType() {
+    public String getProductType() {
         return productType;
     }
 
-    public void setProductType(ProductType productType) {
+    public void setProductType(String productType) {
         this.productType = productType;
     }
 
-    public boolean isActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     public Date getCreatedAt() {
@@ -136,12 +134,12 @@ public class Products {
         this.createdAt = createdAt;
     }
 
-    public Seller getCreatedBy() {
-        return createdBy;
+    public Long getAdminId() {
+        return adminId;
     }
 
-    public void setCreatedBy(Seller createdBy) {
-        this.createdBy = createdBy;
+    public void setAdminId(Long adminId) {
+        this.adminId = adminId;
     }
 
     public Date getUpdatedAt() {
@@ -153,7 +151,7 @@ public class Products {
     }
 
     @Override
-    public String  toString() {
+    public String toString() {
         return "Products{" +
                 "productId=" + productId +
                 ", productName='" + productName + '\'' +
@@ -161,10 +159,10 @@ public class Products {
                 ", sellingPrice=" + sellingPrice +
                 ", minimumQuantity=" + minimumQuantity +
                 ", quantity=" + quantity +
-                ", productType=" + productType +
+                ", productType='" + productType + '\'' +
                 ", isActive=" + isActive +
                 ", createdAt=" + createdAt +
-                ", createdBy=" + createdBy +
+                ", adminId=" + adminId +
                 ", updatedAt=" + updatedAt +
                 '}';
     }
