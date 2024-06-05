@@ -37,8 +37,8 @@ public class Products {
     @Column(name = "created_At",nullable = false)
     private Date createdAt;
 
-    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
-    @JoinColumn(name = "created_By",nullable = false)
+    // @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @Column(name = "created_By",nullable = false)
     private Seller createdBy;
 
     @Column(name = "updated_At")
