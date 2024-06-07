@@ -1,14 +1,21 @@
 package com.inventory.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 public class OrdersDto {
+    @JsonIgnore
     private Long Id;
 
     private Long adminId;
 
+    @JsonIgnore
     private Date createdAt;
+
+    private String date;
 
     private String customerName;
 
@@ -18,16 +25,18 @@ public class OrdersDto {
 
     private double totalAmount;
 
-    private String orderId;
+    private String transactionId;
+    private Long totalBills;
 
     List<OrderProductDetailsDto> products;
 
-    public List<OrderProductDetailsDto> getProducts() {
-        return products;
+
+    public Long getTotalBills() {
+        return totalBills;
     }
 
-    public void setProducts(List<OrderProductDetailsDto> products) {
-        this.products = products;
+    public void setTotalBills(Long totalBills) {
+        this.totalBills = totalBills;
     }
 
     public Long getId() {
@@ -38,20 +47,36 @@ public class OrdersDto {
         Id = id;
     }
 
-    public Long getAdminId() {
-        return adminId;
-    }
-
-    public void setAdminId(Long adminId) {
-        this.adminId = adminId;
-    }
-
     public Date getCreatedAt() {
         return createdAt;
     }
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getDate() {
+        return new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(this.createdAt);
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public List<OrderProductDetailsDto> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<OrderProductDetailsDto> products) {
+        this.products = products;
+    }
+
+    public Long getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(Long adminId) {
+        this.adminId = adminId;
     }
 
     public String getCustomerName() {
@@ -86,12 +111,12 @@ public class OrdersDto {
         this.totalAmount = totalAmount;
     }
 
-    public String getOrderId() {
+    public String getTransactionId() {
         return "IOID$"+this.Id;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
     }
 
     @Override
@@ -104,7 +129,7 @@ public class OrdersDto {
                 ", phoneNo='" + phoneNo + '\'' +
                 ", description='" + description + '\'' +
                 ", totalAmount=" + totalAmount +
-                ", orderId='" + orderId + '\'' +
+                ", orderId='" + transactionId + '\'' +
                 ", products=" + products +
                 '}';
     }

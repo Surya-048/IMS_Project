@@ -80,24 +80,5 @@ public class ProductService {
     }
 
 
-    //Add New Order..
-    public void addNewOrder(OrdersDto ordersDto){
-        Seller seller = this.sellerRepo.findById(ordersDto.getAdminId().intValue()).get();
-        if(seller != null){
-            Orders orders = this.modelMapper.map(ordersDto,Orders.class);
-            Date date = new Date();
-            orders.setCreatedAt(date);
-            this.ordersRepo.save(orders);
-            Orders orders1 = this.ordersRepo.findByCreatedAt(date);
-            ordersDto.getProducts().stream()
-                    .map(p -> {
-                        OrderProductDetails orderProductDetails = this.modelMapper.map(p, OrderProductDetails.class);
-                        orderProductDetails.setOrders(orders1);
-                        Products products = this.productsRepo.findById(p.getProductId()).get();
-                        orderProductDetails.setProductId(products);
-                        return orderProductDetails;
-                    }).forEach(this.orderProductDetailsRepo::save);
-        }
 
-    }
 }

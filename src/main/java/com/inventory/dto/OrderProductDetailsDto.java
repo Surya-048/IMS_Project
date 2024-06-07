@@ -9,7 +9,7 @@ public class OrderProductDetailsDto {
 
     private int quantity;
 
-    private Orders orders;
+//    private Orders orders;
 
     private double totalPrice;
 
@@ -35,14 +35,6 @@ public class OrderProductDetailsDto {
         this.quantity = quantity;
     }
 
-    public Orders getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Orders orders) {
-        this.orders = orders;
-    }
-
     public double getTotalPrice() {
         return totalPrice;
     }
@@ -52,7 +44,7 @@ public class OrderProductDetailsDto {
     }
 
     public String getProductCode() {
-        return productCode;
+        return "IPID$"+this.productId;
     }
 
     public void setProductCode(String productCode) {
@@ -80,7 +72,7 @@ public class OrderProductDetailsDto {
         return "SoldProductDetailsDto{" +
                 "productId=" + productId +
                 ", quantity=" + quantity +
-                ", orders=" + orders +
+//                ", orders=" + orders +
                 ", totalPrice=" + totalPrice +
                 ", productCode='" + productCode + '\'' +
                 ", productName='" + productName + '\'' +

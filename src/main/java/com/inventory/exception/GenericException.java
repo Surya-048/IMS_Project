@@ -1,5 +1,6 @@
 package com.inventory.exception;
 
+import com.inventory.dto.ErrerDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -28,7 +29,7 @@ public class GenericException extends RuntimeException{
 
     @ExceptionHandler(GenericException.class)
     public ResponseEntity<Object> exceptionHandling(GenericException genericException){
-        return  new ResponseEntity<>(genericException.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        return  new ResponseEntity<>(new ErrerDto(genericException.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

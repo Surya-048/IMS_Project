@@ -43,7 +43,7 @@ public class ApplicationService {
     //Save Seller..
     public void saveSeller(SignUpDto signUpDto){
 
-        if(this.sellerRepo.findByEmail(signUpDto.getUserName()).isPresent()){
+        if(this.sellerRepo.findByEmail(signUpDto.getEmail()).isPresent()){
             throw new GenericException("User already exit.");
         }else {
             Seller seller = this.modelMapper.map(signUpDto,Seller.class);

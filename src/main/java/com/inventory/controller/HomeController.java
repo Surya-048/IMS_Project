@@ -1,7 +1,7 @@
 package com.inventory.controller;
 
 import com.inventory.dto.frontendreq.LoginReqDto;
-import com.inventory.dto.LoginResponseDto;
+import com.inventory.dto.frontendreq.LoginResponseDto;
 import com.inventory.dto.SellerDto;
 import com.inventory.dto.frontendreq.SignUpDto;
 import com.inventory.exception.GenericException;
@@ -63,7 +63,8 @@ public class HomeController {
         loginResponseDto.setJwtToken(jwtToken);
         SellerDto sellerDto1 = this.applicationService.findSeller(email);
         loginResponseDto.setAdminId(sellerDto1.getAdminId());
-        loginResponseDto.setName(sellerDto1.getUserName());
+        loginResponseDto.setUserName(sellerDto1.getUserName());
+        loginResponseDto.setEmail(sellerDto1.getEmail());
 
         return new ResponseEntity(loginResponseDto, HttpStatus.OK);
     }
