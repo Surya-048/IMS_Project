@@ -3,13 +3,12 @@ package com.inventory.model;
 import jakarta.persistence.*;
 
 @Entity
-public class SoldProductDetails {
-
+public class OrderProductDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
     @JoinColumn(name = "product_Id",nullable = false)
     private Products productId;
 
@@ -17,22 +16,13 @@ public class SoldProductDetails {
 
     @ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
     @JoinColumn(name = "sold_Order_Id",nullable = false)
-    private SoldOrders orders;
+    private Orders orders;
 
-    public SoldProductDetails() {
-    }
-
-    public SoldProductDetails(int id, Products productId, int quantity) {
-        this.id = id;
-        this.productId = productId;
-        this.quantity = quantity;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -52,12 +42,22 @@ public class SoldProductDetails {
         this.quantity = quantity;
     }
 
+    public Orders getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Orders orders) {
+        this.orders = orders;
+    }
+
+
     @Override
     public String toString() {
-        return "ProductsQuantity{" +
+        return "SoldProductDetails{" +
                 "id=" + id +
                 ", productId=" + productId +
                 ", quantity=" + quantity +
+                ", orders=" + orders +
                 '}';
     }
 }

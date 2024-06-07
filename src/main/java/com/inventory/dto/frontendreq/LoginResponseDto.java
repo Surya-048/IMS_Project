@@ -1,4 +1,4 @@
-package com.inventory.dto;
+package com.inventory.dto.frontendreq;
 
 import org.springframework.stereotype.Component;
 
@@ -6,9 +6,26 @@ import org.springframework.stereotype.Component;
 public class LoginResponseDto {
     private String jwtToken;
 
-    private String name;
+    private String userName;
 
     private long adminId;
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getJwtToken() {
         return jwtToken;
@@ -16,14 +33,6 @@ public class LoginResponseDto {
 
     public void setJwtToken(String jwtToken) {
         this.jwtToken = jwtToken;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public long getAdminId() {
@@ -38,7 +47,6 @@ public class LoginResponseDto {
     public String toString() {
         return "LoginResponseDto{" +
                 "jwtToken='" + jwtToken + '\'' +
-                ", name='" + name + '\'' +
                 ", adminId=" + adminId +
                 '}';
     }

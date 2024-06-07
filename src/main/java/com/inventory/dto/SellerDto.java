@@ -4,7 +4,7 @@ import javax.management.relation.Role;
 import java.util.Date;
 
 public class SellerDto {
-    private long adminId;
+    private Long adminId;
     private String userName;
 
     private String email;
@@ -19,11 +19,11 @@ public class SellerDto {
 
     private boolean isActive;
 
-    public long getAdminId() {
+    public Long getAdminId() {
         return adminId;
     }
 
-    public void setAdminId(long adminId) {
+    public void setAdminId(Long adminId) {
         this.adminId = adminId;
     }
 
@@ -86,7 +86,8 @@ public class SellerDto {
     @Override
     public String toString() {
         return "SellerDto{" +
-                "userName='" + userName + '\'' +
+                "adminId=" + adminId +
+                ", userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
