@@ -1,4 +1,4 @@
-package com.inventory.service;
+package com.inventory.service.impl;
 
 import com.inventory.dto.SellerDto;
 import com.inventory.dto.frontendreq.SignUpDto;
@@ -6,6 +6,7 @@ import com.inventory.enums.Role;
 import com.inventory.exception.GenericException;
 import com.inventory.model.Seller;
 import com.inventory.repository.SellerRepo;
+import com.inventory.service.AuthService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,10 +14,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
-public class ApplicationService {
+public class AuthServiceImpl implements AuthService {
     @Autowired
     private ModelMapper modelMapper;
 
@@ -27,6 +27,7 @@ public class ApplicationService {
 
 
     //Find Seller...
+    @Override
     public SellerDto findSeller(String email){
         Seller seller;
         try {
@@ -41,6 +42,7 @@ public class ApplicationService {
     }
 
     //Save Seller..
+    @Override
     public void saveSeller(SignUpDto signUpDto){
 
         if(this.sellerRepo.findByEmail(signUpDto.getEmail()).isPresent()){

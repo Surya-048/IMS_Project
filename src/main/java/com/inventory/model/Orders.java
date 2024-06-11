@@ -18,13 +18,13 @@ public class Orders {
     @Column(name = "created_At")
     private Date createdAt;
 
-    @Column(name = "customer_Name")
+    @Column(name = "customer_Name",length = 50)
     private String customerName;
 
-    @Column(name = "phone_No")
+    @Column(name = "phone_No",length = 20)
     private String phoneNo;
 
-    @Column(name = "description")
+    @Column(name = "description",length = 50)
     private String description;
 
     @Column(name = "total_Amount")

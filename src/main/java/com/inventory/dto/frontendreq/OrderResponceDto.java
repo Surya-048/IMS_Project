@@ -2,7 +2,7 @@ package com.inventory.dto.frontendreq;
 
 public class OrderResponceDto {
     private String date;
-    private String transactionId;
+    private String orderId;
 
     public String getDate() {
         return date;
@@ -12,19 +12,19 @@ public class OrderResponceDto {
         this.date = date;
     }
 
-    public String getTransactionId() {
-        return transactionId;
+    public String getOrderId() {
+        return orderId;
     }
 
-    public void setTransactionId(String transactionId) {
-        this.transactionId = transactionId;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     @Override
     public String toString() {
         return "OrderResponceDto{" +
                 "date='" + date + '\'' +
-                ", transactionId='" + transactionId + '\'' +
+                ", transactionId='" + orderId + '\'' +
                 '}';
     }
 }

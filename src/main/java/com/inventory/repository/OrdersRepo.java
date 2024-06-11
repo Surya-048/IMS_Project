@@ -14,9 +14,11 @@ import java.util.List;
 @Repository
 public interface OrdersRepo extends JpaRepository<Orders,Integer> {
     Orders findByCreatedAt(Date date);
-    List<Orders> findByAdminId(Long id);
+    List<Orders> findByAdminId(Long adminId);
     Page<Orders> findByAdminId(Long adminId, Pageable pageable);
-    Page<Orders> findByCustomerNameContaining(String customerName, Pageable pageable);
+
+    @Query("select o from Orders o where o.adminId =:adminId and (o.customerName like CONCAT('%', :search,'%') or o.phoneNo like CONCAT('%', :search,'%'))")
+    Page<Orders> findAllByAdminIdAndSearch(@Param("adminId")Long adminId,@Param("search")String search,@Param("search")String search0,Pageable pageable);
 
     // Method to get sales details by user ID and date
     @Query("SELECT o FROM Orders o WHERE o.adminId = :userId AND DATE(o.createdAt) = :saleDate")

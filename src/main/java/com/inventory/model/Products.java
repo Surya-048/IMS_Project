@@ -13,7 +13,7 @@ public class Products {
     @Column(name = "product_Id")
     private Long productId;
 
-    @Column(name = "product_Name",nullable = false)
+    @Column(name = "product_Name",nullable = false,length = 50)
     private String productName;
 
     @Column(name = "cost_Price",nullable = false)
@@ -27,7 +27,7 @@ public class Products {
     @Column(name = "quantity",nullable = false)
     private int quantity;
 
-    @Column(name = "product_Type")
+    @Column(name = "product_Type",length = 50)
     private String productType;
 
     @Column(name = "is_Active")

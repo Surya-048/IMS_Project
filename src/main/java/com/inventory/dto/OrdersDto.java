@@ -25,7 +25,7 @@ public class OrdersDto {
 
     private double totalAmount;
 
-    private String transactionId;
+    private String orderId;
     private Long totalBills;
 
     List<OrderProductDetailsDto> products;
@@ -111,12 +111,12 @@ public class OrdersDto {
         this.totalAmount = totalAmount;
     }
 
-    public String getTransactionId() {
+    public String getOrderId() {
         return "IOID$"+this.Id;
     }
 
-    public void setTransactionId(String transactionId) {
-        this.transactionId = transactionId;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     @Override
@@ -129,7 +129,7 @@ public class OrdersDto {
                 ", phoneNo='" + phoneNo + '\'' +
                 ", description='" + description + '\'' +
                 ", totalAmount=" + totalAmount +
-                ", orderId='" + transactionId + '\'' +
+                ", orderId='" + orderId + '\'' +
                 ", products=" + products +
                 '}';
     }

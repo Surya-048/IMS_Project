@@ -7,7 +7,7 @@ import com.inventory.dto.frontendreq.SignUpDto;
 import com.inventory.exception.GenericException;
 import com.inventory.security.JwtService;
 import com.inventory.security.userdetails.CustomUserDetails;
-import com.inventory.service.ApplicationService;
+import com.inventory.service.AuthService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/IMS")
-public class HomeController {
-    private static final Logger log = LoggerFactory.getLogger(HomeController.class);
+public class AuthController {
+    private static final Logger log = LoggerFactory.getLogger(AuthController.class);
     @Autowired
     private ModelMapper modelMapper;
     @Autowired
@@ -33,7 +33,7 @@ public class HomeController {
     private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    private ApplicationService applicationService;
+    private AuthService applicationService;
 
     @PostMapping(path = "/signup")
     public ResponseEntity<SignUpDto> register(@RequestBody SignUpDto signUpDto){
