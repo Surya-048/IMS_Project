@@ -13,7 +13,7 @@ public class Products {
     @Column(name = "product_Id")
     private Long productId;
 
-    @Column(name = "product_Name",nullable = false)
+    @Column(name = "product_Name",nullable = false,length = 50)
     private String productName;
 
     @Column(name = "cost_Price",nullable = false)
@@ -27,7 +27,7 @@ public class Products {
     @Column(name = "quantity",nullable = false)
     private int quantity;
 
-    @Column(name = "product_Type")
+    @Column(name = "product_Type",length = 50)
     private String productType;
 
     @Column(name = "is_Active")
@@ -36,20 +36,19 @@ public class Products {
     @Column(name = "created_At",nullable = false)
     private Date createdAt;
 
-    @ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
-    @JoinColumn(name = "created_By",nullable = false)
-    private Seller adminId;
+//    @ManyToOne(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
+    @Column(name = "created_By",nullable = false)
+    private Long adminId;
 
     @Column(name = "updated_At")
     private Date updatedAt;
 
-    public Products() {
-    }
+    public Products(){}
 
-    public Products(Long productId, String productName,
-                    double costPrice, double sellingPrice,
-                    int minimumQuantity, int quantity, String productType,
-                    boolean isActive, Date createdAt, Seller createdBy, Date updatedAt) {
+    public Products(Long productId, String productName, double costPrice,
+                    double sellingPrice, int minimumQuantity, int quantity,
+                    String productType, boolean isActive, Date createdAt,
+                    Long adminId, Date updatedAt) {
         this.productId = productId;
         this.productName = productName;
         this.costPrice = costPrice;
@@ -59,7 +58,7 @@ public class Products {
         this.productType = productType;
         this.isActive = isActive;
         this.createdAt = createdAt;
-        this.adminId = createdBy;
+        this.adminId = adminId;
         this.updatedAt = updatedAt;
     }
 
@@ -119,12 +118,12 @@ public class Products {
         this.productType = productType;
     }
 
-    public boolean isActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    public void setIsActive(boolean isActive) {
+        this.isActive = isActive;
     }
 
     public Date getCreatedAt() {
@@ -135,12 +134,12 @@ public class Products {
         this.createdAt = createdAt;
     }
 
-    public Seller getCreatedBy() {
+    public Long getAdminId() {
         return adminId;
     }
 
-    public void setCreatedBy(Seller createdBy) {
-        this.adminId = createdBy;
+    public void setAdminId(Long adminId) {
+        this.adminId = adminId;
     }
 
     public Date getUpdatedAt() {
@@ -152,7 +151,7 @@ public class Products {
     }
 
     @Override
-    public String  toString() {
+    public String toString() {
         return "Products{" +
                 "productId=" + productId +
                 ", productName='" + productName + '\'' +
@@ -160,10 +159,10 @@ public class Products {
                 ", sellingPrice=" + sellingPrice +
                 ", minimumQuantity=" + minimumQuantity +
                 ", quantity=" + quantity +
-                ", productType=" + productType +
+                ", productType='" + productType + '\'' +
                 ", isActive=" + isActive +
                 ", createdAt=" + createdAt +
-                ", createdBy=" + adminId +
+                ", adminId=" + adminId +
                 ", updatedAt=" + updatedAt +
                 '}';
     }

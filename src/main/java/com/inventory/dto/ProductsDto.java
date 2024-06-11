@@ -25,7 +25,8 @@ public class ProductsDto {
 
     private Date createdAt;
 
-    private Integer adminId;
+    private Long adminId;
+
 
     private Date updatedAt;
 
@@ -35,38 +36,6 @@ public class ProductsDto {
 
     public void setProductId(Long productId) {
         this.productId = productId;
-    }
-
-    public Integer getAdminId() {
-        return adminId;
-    }
-
-    public void setAdminId(Integer createdBy) {
-        this.adminId = createdBy;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getProductCode() {
-        return "IPID0"+this.productId;
-    }
-
-    public void setProductCode(String productCode) {
-        this.productCode = productCode;
     }
 
     public String getProductName() {
@@ -117,18 +86,51 @@ public class ProductsDto {
         this.sellingPrice = sellingPrice;
     }
 
-    public Boolean getActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setActive(Boolean active) {
-        isActive = active;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public String getProductCode() {
+        return "IPID$"+this.productId;
+    }
+
+    public void setProductCode(String productCode) {
+        this.productCode = productCode;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Long getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(Long adminId) {
+        this.adminId = adminId;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     @Override
     public String toString() {
         return "ProductsDto{" +
-                "productName='" + productName + '\'' +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
                 ", productType='" + productType + '\'' +
                 ", quantity=" + quantity +
                 ", minimumQuantity=" + minimumQuantity +
@@ -136,6 +138,9 @@ public class ProductsDto {
                 ", sellingPrice=" + sellingPrice +
                 ", isActive=" + isActive +
                 ", productCode='" + productCode + '\'' +
+                ", createdAt=" + createdAt +
+                ", adminId=" + adminId +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

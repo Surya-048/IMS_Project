@@ -11,21 +11,18 @@ public class Seller {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @Column(name = "user_name",nullable = false)
+    @Column(name = "user_name",nullable = false,length = 50)
     private String userName;
 
-    @Column(name = "email", unique = true,nullable = false)
+    @Column(name = "email", unique = true,nullable = false,length = 50)
     private String email;
 
-    @Column(name = "passWord",nullable = false)
+    @Column(name = "passWord",nullable = false,length = 20)
     private String password;
     @Column(name = "role")
     private Role role;
-
-//    @Column(name = "phone_No")
-//    private String phoneNumber;
     @Column(name = "created_At")
     private Date createdAt;
 
@@ -34,11 +31,11 @@ public class Seller {
     @Column(name = "is_Active")
     private boolean isActive;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -73,14 +70,6 @@ public class Seller {
     public void setRole(Role role) {
         this.role = role;
     }
-
-//    public String getPhoneNumber() {
-//        return phoneNumber;
-//    }
-//
-//    public void setPhoneNumber(String phoneNumber) {
-//        this.phoneNumber = phoneNumber;
-//    }
 
     public Date getCreatedAt() {
         return createdAt;
